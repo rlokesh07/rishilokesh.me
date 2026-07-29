@@ -3,7 +3,6 @@ title: Hello World
 description: First post. Getting the blog up and running.
 date: 2026-07-29
 tags: [notes]
-author: mclovin
 ---
 
 This is the first post on rishilokesh.me. Consider it a placeholder while the real stuff gets built out.

@@ -63,12 +63,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               <span>{post.tags.join(", ")}</span>
             </>
           )}
-          {post.author && (
-            <>
-              <span>/</span>
-              <span>{post.author}</span>
-            </>
-          )}
+
         </div>
         <h1 className="font-heading mt-4 text-3xl uppercase leading-none tracking-tight md:text-4xl">
           {post.title}
