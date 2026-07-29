@@ -56,6 +56,30 @@ export function Markdown({ content }: MarkdownProps) {
           </blockquote>
         ),
         hr: () => <hr className="my-8 border-0 border-t-2 border-foreground" />,
+        table: ({ children }) => (
+          <div className="mb-5 overflow-x-auto">
+            <table className="w-full border-collapse border-2 border-foreground font-mono text-sm">
+              {children}
+            </table>
+          </div>
+        ),
+        thead: ({ children }) => (
+          <thead className="bg-foreground text-background">{children}</thead>
+        ),
+        tbody: ({ children }) => <tbody>{children}</tbody>,
+        tr: ({ children }) => (
+          <tr className="border-b-2 border-foreground">{children}</tr>
+        ),
+        th: ({ children }) => (
+          <th className="border-r-2 border-background px-4 py-2 text-left font-medium uppercase tracking-wide last:border-r-0">
+            {children}
+          </th>
+        ),
+        td: ({ children }) => (
+          <td className="border-r-2 border-foreground px-4 py-2 last:border-r-0">
+            {children}
+          </td>
+        ),
       }}
     >
       {content}
