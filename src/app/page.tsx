@@ -6,7 +6,7 @@ export default function HomePage() {
   const posts = getAllPosts()
 
   return (
-    <div className="mx-auto w-full max-w-2xl px-5 py-12 md:py-16">
+    <div className="mx-auto w-full max-w-3xl px-5 py-12 md:py-16">
       <h1 className="font-heading text-4xl uppercase leading-none tracking-tight md:text-5xl">
         Blog
       </h1>
