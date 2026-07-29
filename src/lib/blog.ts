@@ -11,6 +11,7 @@ export type BlogPost = {
   description: string
   date: string
   tags: string[]
+  author: string
   content: string
   readingTime: string
 }
@@ -41,6 +42,7 @@ export function getPostBySlug(slug: string): BlogPost {
     description: data.description ?? "",
     date: data.date ?? new Date().toISOString(),
     tags: data.tags ?? [],
+    author: data.author ?? "",
     content,
     readingTime: stats.text,
   }
