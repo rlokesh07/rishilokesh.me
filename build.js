@@ -308,7 +308,7 @@ ${extraMeta}
 <header class="site-header">
   <a href="/" class="site-name">${escHtml(SITE.name)}</a>
   <nav class="nav-links">
-    <a href="/blog/">Blog</a>
+    <a href="/blog/">Notebook</a>
   </nav>
 </header>
 ${bodyHtml}
@@ -329,7 +329,7 @@ function aboutPage() {
   <p>Previously captained an FRC robotics team for four years.</p>
 </div>
 <div class="about-links">
-  <a href="/blog/">Blog</a>
+  <a href="/blog/">Notebook</a>
   <a href="https://github.com/rlokesh07" target="_blank" rel="noreferrer">GitHub</a>
   <a href="https://linkedin.com/in/rishi-lokesh" target="_blank" rel="noreferrer">LinkedIn</a>
   <a href="mailto:${escHtml(SITE.email)}">${escHtml(SITE.email)}</a>
@@ -349,13 +349,13 @@ function blogIndexPage(posts) {
   </li>`).join('\n')
 
   const body = `
-<h1 class="page-title">Blog</h1>
+<h1 class="page-title">Notebook</h1>
 <p class="page-subtitle">Working notes. Unfinished thoughts. Things I wrote down so I wouldn't forget them.</p>
 <ul class="post-list">
 ${items}
 </ul>`
 
-  return layout('Blog · ' + SITE.name, body)
+  return layout('Notebook · ' + SITE.name, body)
 }
 
 function postPage(post) {
