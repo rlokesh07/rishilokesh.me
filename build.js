@@ -63,7 +63,59 @@ a:hover { background: #111; color: #f9f8f4; text-decoration: none; }
   color: #666;
 }
 
-/* ── Index ── */
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: baseline;
+}
+
+.nav-links a {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #666;
+  text-decoration: none;
+}
+.nav-links a:hover { background: none; color: #111; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ── About / Index ── */
+.about-name {
+  font-size: 2.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.about-body {
+  margin-top: 2rem;
+  border-top: 3px solid #111;
+  padding-top: 1.5rem;
+  max-width: 560px;
+}
+
+.about-body p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 1.1rem;
+  color: #222;
+}
+
+.about-links {
+  margin-top: 2rem;
+  border-top: 2px solid #111;
+  padding-top: 1.1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.about-links a { color: #111; }
+
+/* ── Blog index ── */
 .page-title {
   font-size: 2.2rem;
   font-weight: bold;
@@ -255,7 +307,9 @@ ${extraMeta}
 <body>
 <header class="site-header">
   <a href="/" class="site-name">${escHtml(SITE.name)}</a>
-  <span class="site-label">notes</span>
+  <nav class="nav-links">
+    <a href="/blog/">Blog</a>
+  </nav>
 </header>
 ${bodyHtml}
 <footer class="site-footer">
@@ -266,7 +320,25 @@ ${bodyHtml}
 </html>`
 }
 
-function indexPage(posts) {
+function aboutPage() {
+  const body = `
+<h1 class="about-name">${escHtml(SITE.name)}</h1>
+<div class="about-body">
+  <p>CS student at the University of Michigan. I build things and write about them.</p>
+  <p>Interested in machine learning, systems, and the intersection of the two. I write notes on what I'm learning as I go.</p>
+  <p>Previously captained an FRC robotics team for four years.</p>
+</div>
+<div class="about-links">
+  <a href="/blog/">Blog</a>
+  <a href="https://github.com/rlokesh07" target="_blank" rel="noreferrer">GitHub</a>
+  <a href="https://linkedin.com/in/rishi-lokesh" target="_blank" rel="noreferrer">LinkedIn</a>
+  <a href="mailto:${escHtml(SITE.email)}">${escHtml(SITE.email)}</a>
+</div>`
+
+  return layout(SITE.name, body)
+}
+
+function blogIndexPage(posts) {
   const items = posts.map(p => `
   <li class="post-item">
     <a href="/blog/${p.slug}/" class="post-link">
@@ -283,13 +355,13 @@ function indexPage(posts) {
 ${items}
 </ul>`
 
-  return layout(SITE.name, body)
+  return layout('Blog · ' + SITE.name, body)
 }
 
 function postPage(post) {
   const tags = post.tags.length > 0 ? ` &nbsp;/&nbsp; ${post.tags.join(', ')}` : ''
   const body = `
-<a href="/" class="back-link">← back</a>
+<a href="/blog/" class="back-link">← back</a>
 <header class="article-header">
   <div class="article-meta">${formatDate(post.date)} &nbsp;/&nbsp; ${post.readingTime}${tags}</div>
   <h1 class="article-title">${escHtml(post.title)}</h1>
@@ -357,9 +429,13 @@ function build() {
 
   const posts = loadPosts()
 
-  // Index
-  fs.writeFileSync(path.join(DIST_DIR, 'index.html'), indexPage(posts))
+  // Homepage (about)
+  fs.writeFileSync(path.join(DIST_DIR, 'index.html'), aboutPage())
   console.log('Built: index.html')
+
+  // Blog index
+  fs.writeFileSync(path.join(DIST_DIR, 'blog', 'index.html'), blogIndexPage(posts))
+  console.log('Built: blog/index.html')
 
   // Posts
   for (const post of posts) {
