@@ -1,5 +1,7 @@
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import remarkMath from "remark-math"
+import rehypeKatex from "rehype-katex"
 
 type Props = { content: string }
 
@@ -7,7 +9,8 @@ export function NotebookMarkdown({ content }: Props) {
   return (
     <div style={{ fontSize: "15px", lineHeight: 1.7, color: "#111" }}>
       <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
+        remarkPlugins={[remarkGfm, remarkMath]}
+        rehypePlugins={[rehypeKatex]}
         components={{
           h2: ({ children }) => (
             <h2 style={{ fontSize: "1.1rem", fontWeight: "bold", marginTop: "36px", marginBottom: "10px" }}>
