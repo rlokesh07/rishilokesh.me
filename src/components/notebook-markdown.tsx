@@ -5,77 +5,35 @@ type Props = { content: string }
 
 export function NotebookMarkdown({ content }: Props) {
   return (
-    <div style={{ fontSize: "14px", lineHeight: 1.8, color: "#d8d4d0" }}>
+    <div style={{ fontSize: "15px", lineHeight: 1.7, color: "#111" }}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
           h2: ({ children }) => (
-            <h2 style={{
-              fontSize: "1rem",
-              fontWeight: 700,
-              textTransform: "uppercase",
-              letterSpacing: "0.08em",
-              color: "#ff2200",
-              marginTop: "48px",
-              marginBottom: "16px",
-              paddingBottom: "6px",
-              borderBottom: "1px solid #1a0000",
-            }}>
+            <h2 style={{ fontSize: "1.1rem", fontWeight: "bold", marginTop: "36px", marginBottom: "10px" }}>
               {children}
             </h2>
           ),
           h3: ({ children }) => (
-            <h3 style={{
-              fontSize: "0.9rem",
-              fontWeight: 700,
-              textTransform: "uppercase",
-              letterSpacing: "0.06em",
-              color: "#cc1a00",
-              marginTop: "32px",
-              marginBottom: "12px",
-            }}>
+            <h3 style={{ fontSize: "1rem", fontWeight: "bold", marginTop: "24px", marginBottom: "8px" }}>
               {children}
             </h3>
           ),
           p: ({ children }) => (
-            <p style={{ marginBottom: "20px", lineHeight: 1.8 }}>{children}</p>
+            <p style={{ marginBottom: "16px" }}>{children}</p>
           ),
           ul: ({ children }) => (
-            <ul style={{
-              marginBottom: "20px",
-              paddingLeft: "0",
-              listStyle: "none",
-            }}>
-              {children}
-            </ul>
+            <ul style={{ marginBottom: "16px", paddingLeft: "20px" }}>{children}</ul>
           ),
           ol: ({ children }) => (
-            <ol style={{
-              marginBottom: "20px",
-              paddingLeft: "20px",
-              listStyleType: "decimal",
-            }}>
-              {children}
-            </ol>
+            <ol style={{ marginBottom: "16px", paddingLeft: "20px" }}>{children}</ol>
           ),
           li: ({ children }) => (
-            <li style={{
-              marginBottom: "6px",
-              paddingLeft: "16px",
-              position: "relative",
-            }}>
-              <span style={{
-                position: "absolute",
-                left: 0,
-                color: "#ff2200",
-              }}>—</span>
-              {children}
-            </li>
+            <li style={{ marginBottom: "4px" }}>{children}</li>
           ),
           a: ({ href, children }) => (
             <a
               href={href}
-              style={{ color: "#ff2200", textDecoration: "underline", textUnderlineOffset: "3px" }}
               target={href?.startsWith("http") ? "_blank" : undefined}
               rel={href?.startsWith("http") ? "noreferrer" : undefined}
             >
@@ -83,83 +41,52 @@ export function NotebookMarkdown({ content }: Props) {
             </a>
           ),
           strong: ({ children }) => (
-            <strong style={{ color: "#f0ece8", fontWeight: 700 }}>{children}</strong>
+            <strong style={{ fontWeight: "bold" }}>{children}</strong>
           ),
           code: ({ children }) => (
             <code style={{
-              background: "#140000",
-              border: "1px solid #2a0000",
+              background: "#f4f4f4",
               padding: "1px 5px",
-              fontSize: "0.85em",
-              color: "#ff6644",
-              fontFamily: "inherit",
+              fontSize: "0.9em",
+              fontFamily: "monospace",
             }}>
               {children}
             </code>
           ),
           blockquote: ({ children }) => (
             <blockquote style={{
-              borderLeft: "3px solid #ff2200",
+              borderLeft: "3px solid #ddd",
               paddingLeft: "16px",
-              marginBottom: "20px",
-              color: "#888880",
-              fontStyle: "normal",
+              color: "#666",
+              marginBottom: "16px",
             }}>
               {children}
             </blockquote>
           ),
           hr: () => (
-            <hr style={{
-              margin: "40px 0",
-              border: "none",
-              borderTop: "1px solid #1a0000",
-            }} />
-          ),
-          img: ({ src, alt }) => (
-            <img
-              src={src}
-              alt={alt}
-              style={{
-                maxWidth: "100%",
-                margin: "32px 0",
-                border: "1px solid #1a0000",
-                display: "block",
-              }}
-            />
+            <hr style={{ margin: "32px 0", borderColor: "#eee" }} />
           ),
           table: ({ children }) => (
-            <div style={{ overflowX: "auto", marginBottom: "24px" }}>
-              <table style={{
-                width: "100%",
-                borderCollapse: "collapse",
-                fontSize: "13px",
-              }}>
+            <div style={{ overflowX: "auto", marginBottom: "20px" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px" }}>
                 {children}
               </table>
             </div>
           ),
           thead: ({ children }) => (
-            <thead style={{ borderBottom: "2px solid #ff2200" }}>{children}</thead>
+            <thead style={{ borderBottom: "2px solid #ddd" }}>{children}</thead>
           ),
           tbody: ({ children }) => <tbody>{children}</tbody>,
           tr: ({ children }) => (
-            <tr style={{ borderBottom: "1px solid #1a0000" }}>{children}</tr>
+            <tr style={{ borderBottom: "1px solid #eee" }}>{children}</tr>
           ),
           th: ({ children }) => (
-            <th style={{
-              padding: "8px 12px",
-              textAlign: "left",
-              textTransform: "uppercase",
-              fontSize: "11px",
-              letterSpacing: "0.1em",
-              color: "#ff2200",
-              fontWeight: 700,
-            }}>
+            <th style={{ padding: "8px 12px", textAlign: "left", fontWeight: "bold" }}>
               {children}
             </th>
           ),
           td: ({ children }) => (
-            <td style={{ padding: "8px 12px", color: "#d8d4d0" }}>{children}</td>
+            <td style={{ padding: "8px 12px" }}>{children}</td>
           ),
         }}
       >

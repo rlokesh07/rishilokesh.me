@@ -7,8 +7,6 @@ tags: [ml, hardware, gpu, tpu, systems]
 
 At the end of the day, AI models are just weight vectors times activation functions. The question is how to do that fast.
 
-![Handwritten notes page 1](/notebook/ai-hardware/notes-1.jpg)
-
 ## CPU vs GPU vs TPU
 
 | Processor | Tradeoff |
@@ -24,8 +22,6 @@ A CPU works one step at a time: read instruction, read data, do calculation, wri
 ### GPU
 
 GPUs throw out the complicated CPU stuff and fill the chip with simple Arithmetic Logic Units (ALUs). Because operations happen in parallel, fetch time becomes less significant per operation — the von Neumann bottleneck shrinks.
-
-![Handwritten notes page 2](/notebook/ai-hardware/notes-2.jpg)
 
 ## GPU Architecture
 
@@ -44,8 +40,6 @@ The fundamental unit of a GPU is the **Streaming Multiprocessor (SM)**. Inside a
 - **Grid** — how many blocks you need to solve the problem
 - Blocks within a grid are independent with no guaranteed execution order
 - Threads run in **warps of 32** at the exact same time using **SIMT** (Single Instruction Multiple Threads)
-
-![Handwritten notes page 3](/notebook/ai-hardware/notes-3.jpg)
 
 ## Warp Divergence
 
@@ -66,8 +60,6 @@ From fastest to slowest:
 5. Host Memory / System RAM
 
 Most optimization work comes down to keeping data as close to the compute as possible.
-
-![Handwritten notes page 4](/notebook/ai-hardware/notes-4.jpg)
 
 ## TPU
 
