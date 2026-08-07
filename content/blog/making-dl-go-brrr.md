@@ -1,5 +1,5 @@
 ---
-title: Making Deep Learning Go Brrr
+title: Optimizing Deep Learning
 description: The three things that determine how fast your deep learning code actually runs.
 date: 2026-08-07
 tags: [ml, performance, cuda, systems]
