@@ -1,44 +1,18 @@
 import type { Metadata } from "next"
-import { IBM_Plex_Mono, IBM_Plex_Sans, Syne } from "next/font/google"
-
-import { SiteFooter } from "@/components/site-footer"
-import { SiteHeader } from "@/components/site-header"
-import { siteConfig } from "@/lib/site"
+import { Space_Mono } from "next/font/google"
 
 import "./globals.css"
 
-const plexSans = IBM_Plex_Sans({
-  variable: "--font-plex-sans",
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-})
-
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-})
-
-const syne = Syne({
-  variable: "--font-syne",
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["400", "700"],
 })
 
 export const metadata: Metadata = {
-  title: {
-    default: siteConfig.title,
-    template: `%s · ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  metadataBase: new URL(siteConfig.url),
-  openGraph: {
-    title: siteConfig.title,
-    description: siteConfig.description,
-    url: siteConfig.url,
-    siteName: siteConfig.name,
-    type: "website",
-  },
+  title: "Rishi Lokesh",
+  description: "Notes and writing from Rishi Lokesh.",
+  metadataBase: new URL("https://rishilokesh.me"),
 }
 
 export default function RootLayout({
@@ -47,14 +21,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${plexSans.variable} ${plexMono.variable} ${syne.variable} h-full`}
-    >
-      <body className="grain flex min-h-full flex-col bg-background text-foreground">
-        <SiteHeader />
-        <main className="flex-1">{children}</main>
-        <SiteFooter />
+    <html lang="en" className={spaceMono.variable}>
+      <body>
+        {children}
       </body>
     </html>
   )

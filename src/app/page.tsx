@@ -1,53 +1,87 @@
 import Link from "next/link"
 
-import { getAllPosts } from "@/lib/blog"
-
 export default function HomePage() {
-  const posts = getAllPosts()
-
   return (
-    <div className="mx-auto w-full max-w-3xl px-5 py-12 md:py-16">
-      <h1 className="font-heading text-4xl uppercase leading-none tracking-tight md:text-5xl">
-        Blog
-      </h1>
-      <p className="mt-4 max-w-md font-mono text-sm text-muted-foreground">
-        Working notes. Unfinished thoughts. Things I wrote down so I wouldn&apos;t
-        forget them.
-      </p>
+    <main style={{
+      maxWidth: "640px",
+      margin: "0 auto",
+      padding: "80px 24px",
+    }}>
 
-      {posts.length === 0 ? (
-        <p className="mt-12 border-t-2 border-foreground pt-6 font-mono text-sm text-muted-foreground">
-          No posts yet.
+      <div style={{
+        borderLeft: "4px solid #ff2200",
+        paddingLeft: "20px",
+        marginBottom: "64px",
+      }}>
+        <h1 style={{
+          fontSize: "clamp(2rem, 6vw, 3.5rem)",
+          fontWeight: 700,
+          textTransform: "uppercase",
+          letterSpacing: "-0.03em",
+          lineHeight: 1,
+          color: "#f0ece8",
+          marginBottom: "16px",
+        }}>
+          RISHI<br />LOKESH
+        </h1>
+        <p style={{
+          color: "#888880",
+          fontSize: "13px",
+          lineHeight: 1.8,
+          maxWidth: "420px",
+        }}>
+          ML and systems. Interested in the hardware that actually runs
+          intelligence — GPUs, kernels, compilers, inference engines.
+          Currently building things and figuring out what matters.
         </p>
-      ) : (
-        <ul className="mt-12 border-t-2 border-foreground">
-          {posts.map((post) => (
-            <li key={post.slug} className="border-b-2 border-foreground">
-              <Link
-                href={`/blog/${post.slug}`}
-                className="block py-5 transition-colors hover:bg-foreground hover:text-background"
-              >
-                <div className="flex flex-wrap items-baseline justify-between gap-2 font-mono text-xs uppercase tracking-wide opacity-70">
-                  <time dateTime={post.date}>
-                    {new Date(post.date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
-                  </time>
-                  <span>{post.readingTime}</span>
-                </div>
-                <h2 className="font-heading mt-2 text-2xl uppercase leading-tight tracking-tight">
-                  {post.title}
-                </h2>
-                <p className="mt-2 text-sm leading-relaxed opacity-80">
-                  {post.description}
-                </p>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+      </div>
+
+      <div style={{ marginBottom: "48px" }}>
+        <div style={{
+          borderTop: "1px solid #ff2200",
+          paddingTop: "24px",
+        }}>
+          <p style={{
+            color: "#555550",
+            fontSize: "11px",
+            textTransform: "uppercase",
+            letterSpacing: "0.15em",
+            marginBottom: "12px",
+          }}>
+            writing
+          </p>
+          <Link
+            href="/notebook"
+            style={{
+              display: "inline-block",
+              color: "#ff2200",
+              fontSize: "1.1rem",
+              fontWeight: 700,
+              textTransform: "uppercase",
+              letterSpacing: "0.05em",
+              textDecoration: "none",
+              borderBottom: "2px solid #ff2200",
+              paddingBottom: "2px",
+            }}
+          >
+            MY NOTEBOOK →
+          </Link>
+        </div>
+      </div>
+
+      <div style={{
+        borderTop: "1px solid #1a0000",
+        paddingTop: "24px",
+        fontSize: "11px",
+        color: "#444440",
+        textTransform: "uppercase",
+        letterSpacing: "0.1em",
+      }}>
+        <a href="mailto:hello@rishilokesh.me" style={{ color: "#444440" }}>
+          hello@rishilokesh.me
+        </a>
+      </div>
+
+    </main>
   )
 }
